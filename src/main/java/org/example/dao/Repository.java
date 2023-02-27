@@ -1,12 +1,11 @@
 package org.example.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public interface Repository<T> {
 
-    T save(T t);
+    T save(T t); //method add()
 
     List<T> getAll();
 

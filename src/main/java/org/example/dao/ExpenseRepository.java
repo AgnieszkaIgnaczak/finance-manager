@@ -2,7 +2,6 @@ package org.example.dao;
 
 import org.example.dto.Expense;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
