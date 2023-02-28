@@ -1,6 +1,11 @@
-package org.example.dao;
+package org.example.repository;
 
-import org.example.dto.Category;
+//restricting generic interface Repository<T> to class Category
+//between-interface
+//jest rozszerzeniem interfejsu generycznego, w którym można dopisać szczegółowe metody charakterystyczne tylko dla encji Category
+//np. coś w stylu findCategoriesInName(List<String> names)
+
+import org.example.entity.Category;
 
 import java.util.List;
 import java.util.Optional;

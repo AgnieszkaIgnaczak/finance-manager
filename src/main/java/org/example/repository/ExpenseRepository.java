@@ -1,29 +1,29 @@
-package org.example.dao;
+package org.example.repository;
 
-import org.example.dto.Income;
+import org.example.entity.Expense;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IncomeRepository extends Repository<Income> {
+public interface ExpenseRepository extends Repository<Expense> {
 
     @Override
-    default Income save(Income income) {
+    default Expense save(Expense expense) {
         return null;
     }
 
     @Override
-    default List<Income> getAll() {
+    default List<Expense> getAll() {
         return null;
     }
 
     @Override
-    default Optional<Income> getById(int id) {
+    default Optional<Expense> getById(int id) {
         return Optional.empty();
     }
 
     @Override
-    default Income update(Income income) {
+    default Expense update(Expense expense) {
         return null;
     }
 

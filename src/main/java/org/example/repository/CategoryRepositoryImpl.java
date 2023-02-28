@@ -1,6 +1,9 @@
 package org.example.repository;
 
-import org.example.dao.CategoryRepository;
+//defining the method, implementation
+//implementacje metod z CategoryRepository
 
 public class CategoryRepositoryImpl implements CategoryRepository {
+
+
 }
