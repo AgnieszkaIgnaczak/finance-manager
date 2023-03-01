@@ -1,6 +1,7 @@
 package org.example.entity;
 
 //encja to klasa, która jest zmapowana na tabelę DB
+//pakiet entity = model
 //a DTO to klasa, która służy do przesyłania danych pomiędzy warstwami / modułami
 //a DAO => klasy z sufixem dao, a nie repository
 

@@ -2,6 +2,7 @@ package org.example.repository;
 
 //Repository - interfejs generyczny ogólny, który zbiera wspólne metody dla wszystkich tabel -
 //tutaj trzeba się w przyszłości zastanowić czy wszystkie metody będą potrzebne
+//CRUD operations
 
 import java.util.List;
 import java.util.Optional;
