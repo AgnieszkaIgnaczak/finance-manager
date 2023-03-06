@@ -1,17 +1,8 @@
 package org.example;
 
-import org.example.entity.Category;
-import org.example.entity.Expense;
-import org.example.entity.Income;
-import org.example.untils.ConnectionManager;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+import org.example.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -22,19 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Configuration configuration = new Configuration();
-//        configuration.addAnnotatedClass(Category.class);
-//        configuration.addAnnotatedClass(Expense.class);
-//        configuration.addAnnotatedClass(Income.class);
-
-        //ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();
-        //SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        //Session session = sessionFactory.openSession();
-
-
-//        Session session = ConnectionManager.getSession();
-//        session.get(Category.class, 1);
-//        session.close();
+        CategoryService categoryService = new CategoryService();
 
         System.out.println("Hello Finance Manager!");
         System.out.println("");
@@ -117,6 +96,9 @@ public class Main {
                     System.out.println("Please provide category name.");
                     String categoryName = scanner.next();
                     System.out.println("Provided category name is " + categoryName + ".");
+
+                    categoryService.create(categoryName);
+
                     break;
                 case 13:
                     //instrukcje

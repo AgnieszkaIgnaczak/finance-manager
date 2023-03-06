@@ -1,2 +1,2 @@
--- INSERT INTO car
--- VALUES (2, 'FORD', 'FOCUS', 'MK2');
+INSERT INTO category
+VALUES ('PALIWO');

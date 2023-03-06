@@ -9,14 +9,8 @@ import java.util.List;
 
 public class CategoryRepositoryImpl implements CategoryRepository {
 
-
-
-//    @Override
-//    public List<Category> getAll() {
-//        List<Category> listOfExistingCategories = new LinkedList<Category>();
-//        //implementation
-//        return listOfExistingCategories;
-//    }
-
-
+    @Override
+    public Category save(Category category) {
+        return CategoryRepository.super.save(category);
+    }
 }
