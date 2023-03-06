@@ -3,6 +3,7 @@ package org.example;
 import org.example.entity.Category;
 import org.example.entity.Expense;
 import org.example.entity.Income;
+import org.example.untils.ConnectionManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -21,14 +22,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Configuration configuration = new Configuration();
-        configuration.addAnnotatedClass(Category.class);
-        configuration.addAnnotatedClass(Expense.class);
-        configuration.addAnnotatedClass(Income.class);
+//        Configuration configuration = new Configuration();
+//        configuration.addAnnotatedClass(Category.class);
+//        configuration.addAnnotatedClass(Expense.class);
+//        configuration.addAnnotatedClass(Income.class);
 
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();
+        //ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().build();
         //SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         //Session session = sessionFactory.openSession();
+
+
+//        Session session = ConnectionManager.getSession();
+//        session.get(Category.class, 1);
+//        session.close();
 
         System.out.println("Hello Finance Manager!");
         System.out.println("");

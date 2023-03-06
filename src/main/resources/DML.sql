@@ -1,0 +1,2 @@
+-- INSERT INTO car
+-- VALUES (2, 'FORD', 'FOCUS', 'MK2');

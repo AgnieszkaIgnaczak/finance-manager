@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "category")
 @Data
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int categoryId;
 
@@ -24,7 +26,7 @@ public class Category {
     private String categoryName;
 
     @OneToMany(mappedBy = "category") // nazwa pola po przeciwnej stronie
-    private Expense expense;
+    private List<Expense> expenses;
 
     public Category(int categoryId, String categoryName) {
         this.categoryId = categoryId;

@@ -16,7 +16,7 @@ public class Income {
 
     //pola reprezentujące kolumny w tabeli
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int incomeId;
 
@@ -26,7 +26,7 @@ public class Income {
     @Column(name = "entry_date")
     private LocalDate incomeDate;
 
-    @Column(name = "comment_expense")
+    @Column(name = "comment_income")
     private String incomeComment;
 
     public Income(int incomeId, double incomeAmount, LocalDate incomeDate, String incomeComment) {
