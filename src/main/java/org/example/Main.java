@@ -1,9 +1,12 @@
 package org.example;
 
+import org.example.dto.CategoryDto;
+import org.example.repository.CategoryRepository;
 import org.example.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -11,12 +14,17 @@ public class Main {
 
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
+    private static final CategoryService category_service = new CategoryService();
+
     public static void main(String[] args) {
 
         CategoryService categoryService = new CategoryService();
+        CategoryService removeCategory = new CategoryService();
 
         System.out.println("Hello Finance Manager!");
         System.out.println("");
+
+        List<String> categories;
 
         while (true) {
 
@@ -93,20 +101,23 @@ public class Main {
                     //instrukcje
                     break;
                 case 12:
+                    scanner.nextLine();
                     System.out.println("Please provide category name.");
-                    String categoryName = scanner.next();
+                    String categoryName = scanner.nextLine().toUpperCase();
                     System.out.println("Provided category name is " + categoryName + ".");
 
                     categoryService.create(categoryName);
 
                     break;
                 case 13:
+                    scanner.nextLine();
                     System.out.println("Please provide category which you want to remove:");
-                    //wyświetlanie wszystkich kategorii
-                    String categoryNameRemove = scanner.next();
+                    categories = category_service.getAllCategory();
+                    System.out.println(categories.toString());
+                    String categoryNameRemove = scanner.nextLine().toUpperCase();
                     System.out.println("Provided category to be removed is " + categoryNameRemove + ".");
 
-                    categoryService.remove(categoryNameRemove);
+                    removeCategory.remove(categoryNameRemove);
 
                     break;
                 default:
