@@ -101,7 +101,13 @@ public class Main {
 
                     break;
                 case 13:
-                    //instrukcje
+                    System.out.println("Please provide category which you want to remove:");
+                    //wyświetlanie wszystkich kategorii
+                    String categoryNameRemove = scanner.next();
+                    System.out.println("Provided category to be removed is " + categoryNameRemove + ".");
+
+                    categoryService.remove(categoryNameRemove);
+
                     break;
                 default:
                     System.out.println("Task number does not exist. Please provide correct task number.");
