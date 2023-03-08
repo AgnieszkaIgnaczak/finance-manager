@@ -15,45 +15,18 @@ public class IncomeService {
         return false;
     }
 
-    public boolean incomeCommentValidation(String incomeComment) {
-        if(incomeComment == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public void insertIncome(double incomeAmount) {
+    public void insertIncome(double incomeAmount, String incomeComment) {
         boolean result = incomeValidation(incomeAmount);
         if (result == true) {
             Income income = new Income(incomeAmount);
+            income.setIncomeComment(incomeComment);
+            income.setIncomeDate(LocalDate.now());
             Session session = ConnectionManager.getSession();
             session.getTransaction().begin();
-            session.persist(incomeAmount);
+            session.persist(income);
             session.getTransaction().commit();
             session.close();
         }
     }
-
-    public void insertComment(String incomeComment) {
-        boolean result = incomeCommentValidation(incomeComment);
-        if (result == true) {
-            Income income = new Income(incomeComment);
-            Session session = ConnectionManager.getSession();
-            session.getTransaction().begin();
-            session.persist(incomeComment);
-            session.getTransaction().commit();
-            session.close();
-        }
-    }
-
-    public void insertDate(LocalDate incomeDate) {
-        Session session = ConnectionManager.getSession();
-        session.getTransaction().begin();
-        session.persist(incomeDate);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-
 
 }

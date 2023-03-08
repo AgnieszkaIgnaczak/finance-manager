@@ -78,23 +78,20 @@ public class Main {
                     System.out.println("Please provide new income amount.");
                     double incomeAmount = scanner.nextDouble();
                     System.out.println("Provided income amount is " + incomeAmount + ".");
-                    incomeService.insertIncome(incomeAmount);
 
                     scanner.nextLine();
                     System.out.println("Do you want to add any comment to the provided income amount? (optional: YES/NO)");
                     String incomeDecision = scanner.nextLine();
-                    if(incomeDecision == "YES") {
+                    String incomeComment = null;
+                    if(incomeDecision.equals("YES")) {
                         System.out.println("Please provide your comment here:");
-                        String incomeComment = scanner.nextLine();
-                        incomeService.insertComment(incomeComment);
-                    } else if (incomeDecision == "NO") {
+                        incomeComment = scanner.nextLine();
+                    } else if (incomeDecision.equals("NO")) {
                         System.out.println("No comment added.");
                     } else {
                         System.out.println("Provided comment is incorrect.");
                     }
-
-                    income.setIncomeDate(LocalDate.now());
-                    incomeService.insertDate(income.getIncomeDate());
+                    incomeService.insertIncome(incomeAmount, incomeComment);
 
                     break;
                 case 3:
