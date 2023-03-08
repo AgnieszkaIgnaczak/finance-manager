@@ -36,6 +36,18 @@ public class Income {
         this.incomeComment = incomeComment;
     }
 
+    public Income(double incomeAmount) {
+        this.incomeAmount = incomeAmount;
+    }
+
+    public Income(LocalDate incomeDate) {
+        this.incomeDate = incomeDate;
+    }
+
+    public Income(String incomeComment) {
+        this.incomeComment = incomeComment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

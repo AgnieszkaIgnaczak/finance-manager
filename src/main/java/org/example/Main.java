@@ -1,10 +1,12 @@
 package org.example;
 
-import org.example.dto.CategoryDto;
-import org.example.repository.CategoryRepository;
+import org.example.entity.Income;
 import org.example.service.CategoryService;
+import org.example.service.IncomeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,6 +22,8 @@ public class Main {
 
         CategoryService categoryService = new CategoryService();
         CategoryService removeCategory = new CategoryService();
+        IncomeService incomeService = new IncomeService();
+        Income income = new Income();
 
         System.out.println("Hello Finance Manager!");
         System.out.println("");
@@ -71,7 +75,27 @@ public class Main {
                     //instrukcje
                     break;
                 case 2:
-                    //instrukcje
+                    System.out.println("Please provide new income amount.");
+                    double incomeAmount = scanner.nextDouble();
+                    System.out.println("Provided income amount is " + incomeAmount + ".");
+                    incomeService.insertIncome(incomeAmount);
+
+                    scanner.nextLine();
+                    System.out.println("Do you want to add any comment to the provided income amount? (optional: YES/NO)");
+                    String incomeDecision = scanner.nextLine();
+                    if(incomeDecision == "YES") {
+                        System.out.println("Please provide your comment here:");
+                        String incomeComment = scanner.nextLine();
+                        incomeService.insertComment(incomeComment);
+                    } else if (incomeDecision == "NO") {
+                        System.out.println("No comment added.");
+                    } else {
+                        System.out.println("Provided comment is incorrect.");
+                    }
+
+                    income.setIncomeDate(LocalDate.now());
+                    incomeService.insertDate(income.getIncomeDate());
+
                     break;
                 case 3:
                     //instrukcje

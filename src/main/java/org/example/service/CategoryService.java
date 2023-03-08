@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.dto.CategoryDto;
 import org.example.entity.Category;
 import org.example.untils.ConnectionManager;
 import org.hibernate.Session;
@@ -46,8 +45,5 @@ public class CategoryService {
         session.close();
         return categories1;
     }
-
-
-
 
 }
