@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.entity.Category;
 import org.example.entity.Income;
 import org.example.untils.ConnectionManager;
 import org.hibernate.Session;
@@ -64,6 +65,8 @@ public class IncomeService {
             session.close();
         }
     }
+
+
 }
 
 

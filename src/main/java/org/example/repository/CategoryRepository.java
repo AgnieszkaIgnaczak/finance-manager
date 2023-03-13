@@ -41,4 +41,9 @@ public interface CategoryRepository extends Repository<Category> {
     default boolean removeAll() {
         return false;
     }
+
+    default Optional<Category> getByName(String categoryName) {
+        return Optional.empty();
+    }
+
 }

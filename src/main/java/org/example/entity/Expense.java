@@ -3,12 +3,14 @@ package org.example.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "expense")
 @Data
+@Setter
 @NoArgsConstructor
 public class Expense {
 
@@ -37,6 +39,10 @@ public class Expense {
         this.expenseComment = expenseComment;
     }
 
+    public Expense(double expenseAmount) {
+        this.expenseAmount = expenseAmount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,4 +57,6 @@ public class Expense {
     public int hashCode() {
         return expenseId;
     }
+
+
 }

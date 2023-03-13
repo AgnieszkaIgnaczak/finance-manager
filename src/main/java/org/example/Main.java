@@ -1,7 +1,12 @@
 package org.example;
 
 import org.example.entity.Income;
+import org.example.repository.CategoryRepository;
+import org.example.repository.CategoryRepositoryImpl;
+import org.example.repository.ExpenseRepository;
+import org.example.repository.ExpenseRepositoryImpl;
 import org.example.service.CategoryService;
+import org.example.service.ExpenseService;
 import org.example.service.IncomeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +20,17 @@ public class Main {
 
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
-    private static final CategoryService category_service = new CategoryService();
-    private static final IncomeService income_service = new IncomeService();
+    private static final CategoryRepository categoryRepository = new CategoryRepositoryImpl();
+
+    private static final ExpenseRepository expenseRepository = new ExpenseRepositoryImpl();
+
+    private static final CategoryService categoryService = new CategoryService(categoryRepository);
+    private static final IncomeService incomeService = new IncomeService();
+
+    private static final ExpenseService expenseService = new ExpenseService(categoryService, expenseRepository);
 
     public static void main(String[] args) {
 
-        CategoryService categoryService = new CategoryService();
-        CategoryService removeCategory = new CategoryService();
-        IncomeService incomeService = new IncomeService();
-        Income income = new Income();
 
         System.out.println("Hello Finance Manager!");
         System.out.println("");
@@ -72,7 +79,31 @@ public class Main {
                     System.out.println("User closed the program.");
                     System.exit(1);
                 case 1:
-                    //instrukcje
+                    scanner.nextLine();
+                    System.out.println("All categories:");
+                    System.out.println(categoryService.getAllCategory().toString());
+                    String enteredExpenseCategory = scanner.nextLine().toUpperCase();
+                    System.out.println("Please add expense amount:");
+                    double enteredExpense = scanner.nextDouble();
+
+                    scanner.nextLine();
+                    System.out.println("Do you want to add any comment to the provided expense amount? (optional: YES/NO)");
+
+                    String expenseDecision = scanner.nextLine().toUpperCase();
+
+                    String comment = null;
+
+                    if(expenseDecision.equals("YES")) {
+                        System.out.println("Please provide your comment here:");
+                        comment = scanner.nextLine();
+                    } else if (expenseDecision.equals("NO")) {
+                        System.out.println("No comment added.");
+                    } else {
+                        System.out.println("Provided comment is incorrect.");
+                    }
+
+                    expenseService.insertExpense(enteredExpense, comment, enteredExpenseCategory);
+
                     break;
                 case 2:
                     System.out.println("Please provide new income amount.");
@@ -95,11 +126,12 @@ public class Main {
 
                     break;
                 case 3:
-                    //instrukcje
+
+
                     break;
                 case 4:
                     System.out.println("All income:");
-                    List<Income> incomeList2 = income_service.displayAllIncome();
+                    List<Income> incomeList2 = incomeService.displayAllIncome();
                     System.out.println("Which category you want to delete:");
                     System.out.println(incomeList2.toString());
                     int incomeDeletionById = scanner.nextInt();
@@ -124,7 +156,7 @@ public class Main {
                     break;
                 case 10:
                     System.out.println("All income:");
-                    List<Income> incomeList1 = income_service.displayAllIncome();
+                    List<Income> incomeList1 = incomeService.displayAllIncome();
                     System.out.println(incomeList1.toString());
                     break;
                 case 11:
@@ -142,12 +174,12 @@ public class Main {
                 case 13:
                     scanner.nextLine();
                     System.out.println("Please provide category which you want to remove:");
-                    categories = category_service.getAllCategory();
+                    categories = categoryService.getAllCategory();
                     System.out.println(categories.toString());
                     String categoryNameRemove = scanner.nextLine().toUpperCase();
                     System.out.println("Provided category to be removed is " + categoryNameRemove + ".");
 
-                    removeCategory.remove(categoryNameRemove);
+                    categoryService.remove(categoryNameRemove);
 
                     break;
                 default:
