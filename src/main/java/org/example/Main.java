@@ -6,7 +6,6 @@ import org.example.service.IncomeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,6 +16,7 @@ public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     private static final CategoryService category_service = new CategoryService();
+    private static final IncomeService income_service = new IncomeService();
 
     public static void main(String[] args) {
 
@@ -81,7 +81,7 @@ public class Main {
 
                     scanner.nextLine();
                     System.out.println("Do you want to add any comment to the provided income amount? (optional: YES/NO)");
-                    String incomeDecision = scanner.nextLine();
+                    String incomeDecision = scanner.nextLine().toUpperCase();
                     String incomeComment = null;
                     if(incomeDecision.equals("YES")) {
                         System.out.println("Please provide your comment here:");
@@ -98,7 +98,14 @@ public class Main {
                     //instrukcje
                     break;
                 case 4:
-                    //instrukcje
+                    System.out.println("All income:");
+                    List<Income> incomeList2 = income_service.displayAllIncome();
+                    System.out.println("Which category you want to delete:");
+                    System.out.println(incomeList2.toString());
+                    int incomeDeletionById = scanner.nextInt();
+
+                    incomeService.removeIncome(incomeDeletionById);
+
                     break;
                 case 5:
                     //instrukcje
@@ -116,7 +123,9 @@ public class Main {
                     //instrukcje
                     break;
                 case 10:
-                    //instrukcje
+                    System.out.println("All income:");
+                    List<Income> incomeList1 = income_service.displayAllIncome();
+                    System.out.println(incomeList1.toString());
                     break;
                 case 11:
                     //instrukcje

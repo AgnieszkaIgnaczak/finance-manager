@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.entity.Income;
+import org.example.service.IncomeService;
 
 import java.util.List;
 import java.util.Optional;
